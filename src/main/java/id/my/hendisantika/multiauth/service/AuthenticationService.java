@@ -1,11 +1,14 @@
 package id.my.hendisantika.multiauth.service;
 
 import id.my.hendisantika.multiauth.config.ApiKeyAuthentication;
+import id.my.hendisantika.multiauth.config.AuthenticationApi;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
  * Created by IntelliJ IDEA.
@@ -41,5 +44,14 @@ public class AuthenticationService {
         }
 
         return new ApiKeyAuthentication(apiKey, AuthorityUtils.NO_AUTHORITIES);
+    }
+
+    public AuthenticationApi createRetrofitService() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("YOUR REST ENDPOINT URL GOES HERE")
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build();
+
+        return retrofit.create(AuthenticationApi.class);
     }
 }
