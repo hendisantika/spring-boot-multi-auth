@@ -26,7 +26,6 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 public class AuthenticationResponse<T> {
-
     List<Link> links = new ArrayList<>();
     private boolean success;
     private String message;

@@ -1,9 +1,12 @@
 package id.my.hendisantika.multiauth.config;
 
+import id.my.hendisantika.multiauth.model.UserResource;
+import id.my.hendisantika.multiauth.service.AuthenticationService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collections;

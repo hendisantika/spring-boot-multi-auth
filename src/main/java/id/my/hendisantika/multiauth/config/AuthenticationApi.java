@@ -1,5 +1,7 @@
 package id.my.hendisantika.multiauth.config;
 
+import id.my.hendisantika.multiauth.model.AuthenticationResponse;
+import id.my.hendisantika.multiauth.model.UserResource;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
