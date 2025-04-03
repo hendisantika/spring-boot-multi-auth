@@ -2,6 +2,7 @@ package id.my.hendisantika.multiauth.service;
 
 import id.my.hendisantika.multiauth.config.ApiKeyAuthentication;
 import id.my.hendisantika.multiauth.config.AuthenticationApi;
+import id.my.hendisantika.multiauth.model.UserResource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -9,6 +10,9 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
+
+import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -53,5 +57,20 @@ public class AuthenticationService {
                 .build();
 
         return retrofit.create(AuthenticationApi.class);
+    }
+
+    public Optional<UserResource> authenticateUser(String email, String password) {
+        var authenticationApi = createRetrofitService();
+        var request = authenticationApi.authenticateUser(email, password);
+        try {
+            var response = request.execute();
+            if (response.isSuccessful() && response.body() != null) {
+                return Optional.of(response.body().getData());
+            } else {
+                return Optional.empty();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
