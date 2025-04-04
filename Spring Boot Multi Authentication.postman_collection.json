@@ -1,0 +1,74 @@
+{
+  "info": {
+    "_postman_id": "7c7dc94a-f02d-4c14-81fa-a7ae0501cc2f",
+    "name": "Spring Boot Multi Authentication",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "276892"
+  },
+  "item": [
+    {
+      "name": "Server Test",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "API-KEY",
+            "value": "12345abc"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/multi-auth/server/test",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "multi-auth",
+            "server",
+            "test"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Client Test",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "password",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "clienttest@gmail.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/multi-auth/client/test",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "multi-auth",
+            "client",
+            "test"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
