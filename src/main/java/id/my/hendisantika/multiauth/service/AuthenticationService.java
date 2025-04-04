@@ -52,7 +52,8 @@ public class AuthenticationService {
 
     public AuthenticationApi createRetrofitService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("YOUR REST ENDPOINT URL GOES HERE")
+//                .baseUrl("YOUR REST ENDPOINT URL GOES HERE")
+                .baseUrl("http://localhost:8080")
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
 
