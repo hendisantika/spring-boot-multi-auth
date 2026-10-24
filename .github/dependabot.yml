@@ -7,7 +7,51 @@ updates:
       time: '05:00'
       timezone: Asia/Jakarta
     open-pull-requests-limit: 10
+    target-branch: main
+    labels:
+      - dependencies
+      - java
+    commit-message:
+      prefix: "build"
+      prefix-development: "build"
+      include: scope
+    groups:
+      spring-boot:
+        patterns:
+          - "org.springframework*"
+        update-types:
+          - minor
+          - patch
+      retrofit:
+        patterns:
+          - "com.squareup.retrofit2*"
+      maven-plugins:
+        patterns:
+          - "org.apache.maven.plugins*"
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # Major upgrades of the Spring Boot parent need manual migration
+      - dependency-name: "org.springframework.boot:spring-boot-starter-parent"
+        update-types: [ "version-update:semver-major" ]
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 5
+    target-branch: main
+    labels:
+      - dependencies
+      - github_actions
+    commit-message:
+      prefix: "ci"
+      include: scope
+    groups:
+      github-actions:
+        patterns:
+          - "*"
